@@ -3,12 +3,15 @@ package com.tr3ble.chatgpt
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
-import okhttp3.*
+import okhttp3.Call
+import okhttp3.Callback
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.OkHttpClient
+import okhttp3.Request
 import okhttp3.RequestBody.Companion.toRequestBody
+import okhttp3.Response
 import org.json.JSONArray
 import org.json.JSONObject
 import java.io.IOException
@@ -21,7 +24,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val etQuestion = findViewById<EditText>(R.id.etQuestion)
-        val btnSubmit = findViewById<Button>(R.id.btnSubmit)
+        val btnSubmit = findViewById<com.google.android.material.floatingactionbutton.FloatingActionButton>(R.id.btnSubmit)
         val txtResponse = findViewById<TextView>(R.id.txtResponse)
 
         btnSubmit.setOnClickListener {
@@ -33,22 +36,23 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-
     fun getResponse(question: String, callback: (String) -> Unit) {
-        val apiKey = "ENTER YOUR API KEY"
-        val gptUrl = "https://api.openai.com/v1/chat/completions"
+        val apiKey = "WTFTR3BLELOOL"
+        val gptUrl = "https://neuroapi.host/v1/chat/completions"
 
         val json = JSONObject()
         json.put("model", "gpt-3.5-turbo")
-        json.put("messages", JSONArray().put(
-            JSONObject()
-                .put("role", "system")
-                .put("content", "You are a helpful assistant")
-        ).put(
-            JSONObject()
-                .put("role", "user")
-                .put("content", question)
-        ))
+        json.put(
+            "messages", JSONArray().put(
+                JSONObject()
+                    .put("role", "system")
+                    .put("content", "You are a helpful assistant")
+            ).put(
+                JSONObject()
+                    .put("role", "user")
+                    .put("content", question)
+            )
+        )
 
         val requestBody = json.toString()
 
@@ -75,7 +79,8 @@ class MainActivity : AppCompatActivity() {
                     Log.d("data", body)
                     val jsonObject = JSONObject(body)
                     val jsonArray: JSONArray = jsonObject.getJSONArray("choices")
-                    val textResult = jsonArray.getJSONObject(0).getJSONObject("message").getString("content")
+                    val textResult =
+                        jsonArray.getJSONObject(0).getJSONObject("message").getString("content")
                     callback(textResult)
                 } else {
                     Log.e("data", "empty")

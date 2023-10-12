@@ -13,6 +13,7 @@ object RequestBuilder {
             .url(gptUrl)
             .addHeader("Content-Type", "application/json")
             .addHeader("Authorization", "Bearer $apiKey")
-            .post(requestBody.toRequestBody("application/json".toMediaTypeOrNull())).build()
+            .post(requestBody.toRequestBody("application/json".toMediaTypeOrNull()))
+            .build()
     }
 }

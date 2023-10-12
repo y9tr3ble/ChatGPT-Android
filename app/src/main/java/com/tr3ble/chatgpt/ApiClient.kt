@@ -1,15 +1,7 @@
 package com.tr3ble.chatgpt
 
 import android.util.Log
-import com.tr3ble.chatgpt.Constants.API_KEY
-import com.tr3ble.chatgpt.Constants.GPT_URL
-import okhttp3.Call
-import okhttp3.Callback
-import okhttp3.MediaType.Companion.toMediaTypeOrNull
-import okhttp3.OkHttpClient
-import okhttp3.Request
-import okhttp3.RequestBody.Companion.toRequestBody
-import okhttp3.Response
+import okhttp3.*
 import org.json.JSONArray
 import org.json.JSONObject
 import java.io.IOException
@@ -18,29 +10,9 @@ class ApiClient {
     private val client = OkHttpClient()
 
     fun getResponse(question: String, callback: (String) -> Unit) {
-
-        val json = JSONObject()
-        json.put("model", "gpt-3.5-turbo")
-        json.put(
-            "messages", JSONArray().put(
-                JSONObject()
-                    .put("role", "system")
-                    .put("content", "You are a helpful assistant")
-            ).put(
-                JSONObject()
-                    .put("role", "user")
-                    .put("content", question)
-            )
-        )
-
+        val json = MessageBuilder.buildJsonMessage(question)
         val requestBody = json.toString()
-
-        val request = Request.Builder()
-            .url(GPT_URL)
-            .addHeader("Content-Type", "application/json")
-            .addHeader("Authorization", "Bearer $API_KEY")
-            .post(requestBody.toRequestBody("application/json".toMediaTypeOrNull()))
-            .build()
+        val request = RequestBuilder.buildRequest(Constants.API_KEY, Constants.GPT_URL, requestBody)
 
         client.newCall(request).enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {

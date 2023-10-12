@@ -1,6 +1,8 @@
 package com.tr3ble.chatgpt
 
 import android.util.Log
+import com.tr3ble.chatgpt.Constants.API_KEY
+import com.tr3ble.chatgpt.Constants.GPT_URL
 import okhttp3.Call
 import okhttp3.Callback
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -16,8 +18,6 @@ class ApiClient {
     private val client = OkHttpClient()
 
     fun getResponse(question: String, callback: (String) -> Unit) {
-        val apiKey = "WTFTR3BLELOOL"
-        val gptUrl = "https://neuroapi.host/v1/chat/completions"
 
         val json = JSONObject()
         json.put("model", "gpt-3.5-turbo")
@@ -36,9 +36,9 @@ class ApiClient {
         val requestBody = json.toString()
 
         val request = Request.Builder()
-            .url(gptUrl)
+            .url(GPT_URL)
             .addHeader("Content-Type", "application/json")
-            .addHeader("Authorization", "Bearer $apiKey")
+            .addHeader("Authorization", "Bearer $API_KEY")
             .post(requestBody.toRequestBody("application/json".toMediaTypeOrNull()))
             .build()
 

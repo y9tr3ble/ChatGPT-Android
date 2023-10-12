@@ -7,17 +7,25 @@
     android:layout_height="match_parent"
     android:padding="20dp">
 
-    <TextView
-        android:id="@+id/txtResponse"
+    <ScrollView
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="0dp"
-        android:layout_marginBottom="0dp"
-        android:hint="@string/response_hint"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="35dp"
+        app:layout_constraintBottom_toTopOf="@+id/textField"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/txtResponse"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:layout_marginBottom="0dp"
+            android:hint="@string/response_hint"
+            android:textSize="20sp" />
+
+    </ScrollView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btnSubmit"
@@ -25,21 +33,20 @@
         android:layout_height="56dp"
         android:layout_marginStart="3dp"
         android:layout_marginEnd="5dp"
-        android:layout_marginBottom="25dp"
         android:contentDescription="TODO"
         android:src="@drawable/baseline_send_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/textField"
-        app:layout_constraintTop_toTopOf="@+id/txtResponse"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textField"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="625dp"
+        android:layout_marginTop="710dp"
         android:layout_marginEnd="60dp"
         android:hint="@string/Question_ent"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/txtResponse"
+            android:id="@+id/textResponse"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="0dp"
@@ -28,7 +28,7 @@
     </ScrollView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/btnSubmit"
+        android:id="@+id/buttonSubmit"
         android:layout_width="56dp"
         android:layout_height="56dp"
         android:layout_marginStart="3dp"

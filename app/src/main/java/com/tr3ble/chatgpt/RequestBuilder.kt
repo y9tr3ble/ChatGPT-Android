@@ -6,7 +6,6 @@ import okhttp3.Request
 import okhttp3.RequestBody.Companion.toRequestBody
 
 object RequestBuilder {
-    private val client = OkHttpClient()
 
     fun buildRequest(apiKey: String, gptUrl: String, requestBody: String): Request {
         return Request.Builder()

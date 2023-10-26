@@ -2,7 +2,6 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="20dp">
@@ -10,54 +9,73 @@
     <ScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="35dp"
-        app:layout_constraintBottom_toTopOf="@+id/textField"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/textField">
 
         <TextView
             android:id="@+id/textResponse"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="0dp"
-            android:layout_marginBottom="0dp"
             android:hint="@string/response_hint"
+            android:padding="8dp"
+            android:textColorHint="#A1887F"
+            android:textIsSelectable="true"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
             android:textSize="20sp" />
 
     </ScrollView>
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/buttonSubmit"
-        android:layout_width="56dp"
-        android:layout_height="56dp"
-        android:layout_marginStart="3dp"
-        android:layout_marginEnd="5dp"
-        android:contentDescription="TODO"
-        android:src="@drawable/baseline_send_24"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/textField"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textField"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="710dp"
-        android:layout_marginEnd="60dp"
         android:hint="@string/Question_ent"
+        app:boxBackgroundMode="outline"
+        app:boxCornerRadiusTopStart="50dp"
+        app:boxCornerRadiusTopEnd="50dp"
+        app:boxCornerRadiusBottomStart="50dp"
+        app:boxCornerRadiusBottomEnd="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintEnd_toStartOf="@id/submitButton"
+        android:layout_marginEnd="0dp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etQuestion"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:paddingStart="30dp"
+            android:paddingEnd="12dp"
+            android:textColorHint="#546E7A" />
 
     </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/submitButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:backgroundTint="@android:color/transparent"
+        android:contentDescription="@string/submitDescription"
+        android:src="@drawable/ic_microphone_icon"
+        app:elevation="0dp"
+        app:layout_constraintBottom_toBottomOf="@id/textField"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textField"
+        app:layout_constraintTop_toTopOf="@id/textField"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

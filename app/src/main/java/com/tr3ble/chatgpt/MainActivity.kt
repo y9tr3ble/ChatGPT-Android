@@ -23,6 +23,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var textResponse: TextView
     private lateinit var progressBar: ProgressBar
     private lateinit var pLauncher: ActivityResultLauncher<String>
+    private val chatHistory = mutableListOf<ChatMessage>()
     private val apiClient = ApiClient()
 
     private val voiceInputHelper by lazy {
@@ -55,6 +56,9 @@ class MainActivity : AppCompatActivity() {
         submitButton.setOnClickListener {
             val question = etQuestion.text.toString()
             if (question.isNotEmpty()) {
+                val userMessage = ChatMessage("user", question, System.currentTimeMillis())
+                chatHistory.add(userMessage)
+                updateChat()
                 startRequest()
                 apiClient.getResponse(question) { response, error ->
                     handleApiResponse(response, error)
@@ -65,13 +69,22 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun updateChat() {
+        val chatText = chatHistory.joinToString("\n") { message ->
+            "${if (message.role == "user") "You" else "ChatGPT"}: ${message.content}"
+        }
+        textResponse.text = chatText
+    }
+
     private fun handleApiResponse(response: String?, error: String?) {
         runOnUiThread {
             finishRequest()
             if (error != null) {
                 Toast.makeText(this, error, Toast.LENGTH_LONG).show()
             } else {
-                textResponse.text = response
+                val botMessage = ChatMessage("system", response ?: "", System.currentTimeMillis())
+                chatHistory.add(botMessage)
+                updateChat()
             }
         }
     }

@@ -16,7 +16,6 @@ object MessageBuilder {
                     JSONObject()
                         .put("role", "user")
                         .put("content", question)
-                        .put("tokens", 500)
                 )
             )
         }

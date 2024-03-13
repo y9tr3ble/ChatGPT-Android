@@ -43,6 +43,7 @@ dependencies {
     implementation(libs.core.ktx)
     implementation(libs.appcompat)
     implementation(libs.material)
+    implementation("androidx.activity:activity:1.8.2")
     implementation(libs.constraintlayout)
     implementation(libs.okhttp)
     testImplementation(libs.junit)

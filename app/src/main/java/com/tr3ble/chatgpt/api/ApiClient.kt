@@ -1,6 +1,7 @@
-package com.tr3ble.chatgpt
+package com.tr3ble.chatgpt.api
 
 import android.util.Log
+import com.tr3ble.chatgpt.chat.MessageBuilder
 import okhttp3.*
 import org.json.JSONArray
 import org.json.JSONObject
@@ -21,14 +22,12 @@ class ApiClient {
 
         client.newCall(request).enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
-                Log.e("error", "FAILED", e)
-                callback(null, "Network error. Please check your connection.")
+                callback(null, "Ошибка сети. Пожалуйста, проверьте подключение.")
             }
 
             override fun onResponse(call: Call, response: Response) {
                 if (!response.isSuccessful) {
-                    Log.e("error", "Response unsuccessful: ${response.code}")
-                    callback(null, "Server error: ${response.code}")
+                    callback(null, "Ошибка сервера: ${response.code}")
                     return
                 }
 
@@ -41,8 +40,7 @@ class ApiClient {
                         jsonArray.getJSONObject(0).getJSONObject("message").getString("content")
                     callback(textResult, null)
                 } else {
-                    Log.e("data", "empty")
-                    callback(null, "Empty response from server.")
+                    callback(null, "Пустой ответ от сервера.")
                 }
             }
         })

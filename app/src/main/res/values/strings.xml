@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">ChatGPT</string>
-    <string name="submit">Submit</string>
-    <string name="response_hint">Your response will be right here</string>
-    <string name="Question_ent">Enter your question here</string>
-    <string name="submitDescription">Submit</string>
+    <string name="submit">Отправить</string>
+    <string name="response_hint">Ваш ответ будет прямо здесь</string>
+    <string name="Question_ent">Введите свой вопрос здесь</string>
+    <string name="submitDescription">Подтвердить</string>
 </resources>

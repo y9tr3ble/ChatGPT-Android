@@ -1,4 +1,4 @@
-package com.tr3ble.chatgpt
+package com.tr3ble.chatgpt.voice
 
 import android.os.Bundle
 import android.speech.RecognitionListener

@@ -1,4 +1,4 @@
-package com.tr3ble.chatgpt
+package com.tr3ble.chatgpt.chat
 
 import org.json.JSONArray
 import org.json.JSONObject

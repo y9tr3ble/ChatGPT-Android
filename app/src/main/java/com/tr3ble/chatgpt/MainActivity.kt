@@ -8,7 +8,6 @@ import android.view.View
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import android.widget.ProgressBar
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
@@ -16,6 +15,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
 import com.google.android.material.color.DynamicColors
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.tr3ble.chatgpt.api.ApiClient
+import com.tr3ble.chatgpt.chat.ChatMessage
 
 class MainActivity : AppCompatActivity() {
 
@@ -72,7 +73,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun updateChat() {
         val chatText = chatHistory.joinToString("\n") { message ->
-            "${if (message.role == "user") "You" else "ChatGPT"}: ${message.content}"
+            "${if (message.role == "user") "Ты" else "ChatGPT"}: ${message.content}"
         }
         textResponse.text = chatText
     }
@@ -105,7 +106,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun registerPermissionListener() = registerForActivityResult(ActivityResultContracts.RequestPermission()) {
-        Toast.makeText(this, if (it) "Record accessed to audio" else "Permission denied", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, if (it) "Разрешение на аудио получено" else "Разрешение отклонено", Toast.LENGTH_SHORT).show()
     }
 
     private fun updateMicOrSendIcon(hasText: Boolean) {

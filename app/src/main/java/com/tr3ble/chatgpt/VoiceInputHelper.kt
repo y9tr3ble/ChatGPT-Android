@@ -3,11 +3,11 @@ package com.tr3ble.chatgpt
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.speech.RecognitionListener
 import android.speech.RecognizerIntent
 import android.speech.SpeechRecognizer
 import android.widget.EditText
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.tr3ble.chatgpt.voice.RecognitionListenerAdapter
 
 class VoiceInputHelper(
     private val context: Context,

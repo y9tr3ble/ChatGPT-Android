@@ -1,4 +1,4 @@
-package com.tr3ble.chatgpt
+package com.tr3ble.chatgpt.api
 
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.OkHttpClient

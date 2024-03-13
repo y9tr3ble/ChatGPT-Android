@@ -1,4 +1,4 @@
-package com.tr3ble.chatgpt
+package com.tr3ble.chatgpt.chat
 
 data class ChatMessage(
     val role: String,
